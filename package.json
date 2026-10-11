@@ -1,0 +1,10 @@
+{
+  "name": "realassetclass-render",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fontsource/black-han-sans": "5.2.8",
+    "@fontsource/ibm-plex-sans-kr": "5.2.8",
+    "playwright-core": "1.56.1"
+  }
+}
