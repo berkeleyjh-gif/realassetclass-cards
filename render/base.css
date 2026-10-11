@@ -1,0 +1,126 @@
+/* realassetclass 카드 공통 스타일 — 1080×1350 */
+:root{
+  --navy:#0D1421; --navy2:#152036; --navy3:#1C2A44; --line:#26344F;
+  --orange:#FF8A3D; --orange-d:#E2702A; --blue:#5B9BFF;
+  --white:#F4F6FA; --text:#C9D2E3; --muted:#8C9AB3; --dim:#6B7A94;
+  --cream:#F3EEE6; --ink:#121A2B;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;width:1080px;height:1350px;overflow:hidden;background:var(--navy)}
+section{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--navy);color:var(--white);
+  font-family:'IBM Plex Sans KR',sans-serif;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+section.cream{background:var(--cream);color:var(--ink)}
+section.orange{background:var(--orange);color:var(--ink)}
+section.blue{background:var(--blue);color:var(--ink)}
+
+/* 상단 바 (렌더러가 자동 삽입) */
+.top{position:absolute;top:66px;left:72px;right:72px;display:flex;justify-content:space-between;
+  font-size:27px;font-weight:500;color:var(--muted);letter-spacing:.2px;z-index:5}
+section.cream .top,section.orange .top,section.blue .top{color:rgba(18,26,43,.55)}
+
+/* 본문 영역 */
+.content{position:absolute;top:168px;left:72px;right:72px}
+.bottom{position:absolute;left:72px;right:72px;bottom:72px}
+.center{position:absolute;left:72px;right:72px;top:50%;transform:translateY(-50%)}
+
+/* 타이포 */
+.display{font-family:'Black Han Sans',sans-serif;font-size:230px;line-height:.92;letter-spacing:-3px}
+.mega{font-family:'Black Han Sans',sans-serif;font-size:150px;line-height:1;letter-spacing:-2px}
+.h1{font-family:'Black Han Sans',sans-serif;font-size:86px;line-height:1.16;letter-spacing:-1px}
+.h2{font-family:'Black Han Sans',sans-serif;font-size:62px;line-height:1.22;letter-spacing:-.5px}
+.h3{font-weight:700;font-size:42px;line-height:1.38;letter-spacing:-.3px}
+.lead{font-weight:600;font-size:38px;line-height:1.5}
+.body{font-size:33px;line-height:1.6;color:var(--text)}
+.small{font-size:27px;line-height:1.5;color:var(--muted)}
+section.cream .body,section.orange .body{color:#34405A}
+section.cream .small,section.orange .small{color:#5E6A82}
+.o{color:var(--orange)} .b{color:var(--blue)} .w{color:var(--white)} .m{color:var(--muted)}
+.ink{color:var(--ink)}
+.u{box-shadow:inset 0 -14px 0 rgba(255,138,61,.45)}
+sup{font-size:.5em;vertical-align:.85em;line-height:0}
+
+/* 컴포넌트 */
+.pill{display:inline-block;border:3px solid var(--orange);color:var(--orange);border-radius:999px;
+  padding:9px 26px 11px;font-size:30px;font-weight:700;line-height:1.2}
+.pill.fill{background:var(--orange);color:var(--ink)}
+.pill.blue{border-color:var(--blue);color:var(--blue)}
+section.cream .pill{border-color:var(--ink);color:var(--ink)}
+.tag{display:inline-block;background:var(--navy3);color:var(--muted);border-radius:10px;padding:6px 16px;font-size:24px;font-weight:600}
+.card{background:var(--navy2);border:1.5px solid var(--line);border-radius:28px;padding:38px 44px}
+section.cream .card{background:#FFFFFF;border-color:#E2DACD}
+.card.o{border-color:rgba(255,138,61,.6)}
+.rule{height:2px;background:var(--line);border:0;margin:0}
+.bar{height:46px;background:var(--navy3);border-radius:12px;overflow:hidden;position:relative}
+.bar>i{display:block;height:100%;background:var(--orange);border-radius:12px}
+.bar.b>i{background:var(--blue)}
+.next{position:absolute;right:72px;bottom:72px;background:var(--white);color:var(--ink);border-radius:999px;
+  padding:16px 34px 18px;font-weight:700;font-size:29px;z-index:6}
+.src{position:absolute;left:72px;right:72px;bottom:62px;font-size:22px;line-height:1.45;color:var(--dim)}
+section.cream .src,section.orange .src{color:#7A8398}
+.num{font-family:'Black Han Sans',sans-serif;color:var(--orange)}
+
+/* 레이아웃 유틸 */
+.row{display:flex;align-items:center;gap:24px}
+.row.top-a{align-items:flex-start}
+.sb{justify-content:space-between}
+.col{display:flex;flex-direction:column}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt24{margin-top:24px}.mt32{margin-top:32px}
+.mt40{margin-top:40px}.mt48{margin-top:48px}.mt56{margin-top:56px}.mt72{margin-top:72px}.mt96{margin-top:96px}
+.tr{text-align:right}.tc{text-align:center}
+
+/* 차트·리스트 컴포넌트 */
+.dv .r{display:grid;grid-template-columns:220px 1fr 220px;align-items:center;gap:22px;height:104px}
+.dv .lab{font-size:31px;font-weight:600;color:var(--text)}
+.dv .val{font-family:'Black Han Sans',sans-serif;font-size:48px;text-align:right;white-space:nowrap}
+.dv .track{position:relative;height:40px}
+.dv .track:before{content:'';position:absolute;left:50%;top:-18px;bottom:-18px;width:2px;background:#3A4A68}
+.dv .track i{position:absolute;top:0;height:100%;border-radius:8px}
+.dv .track i.pos{left:50%;background:var(--blue)}
+.dv .track i.neg{right:50%;background:var(--orange)}
+
+.vbars{display:flex;align-items:flex-end;gap:26px;height:520px;border-bottom:2px solid var(--line)}
+.vbars .c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.vbars .v{font-family:'Black Han Sans',sans-serif;font-size:40px;margin-bottom:12px}
+.vbars .bk{width:100%;background:var(--navy3);border-radius:14px 14px 0 0}
+.vbars .bk.hi{background:var(--orange)}
+.vbars-x{display:flex;gap:26px}
+.vbars-x span{flex:1;text-align:center;font-size:25px;color:var(--muted);margin-top:14px;line-height:1.35}
+
+.tbl{width:100%;border-collapse:collapse;font-size:31px}
+.tbl th{font-size:24px;font-weight:600;color:var(--muted);text-align:right;padding:0 0 18px}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td{padding:22px 0;border-top:1.5px solid var(--line);text-align:right;font-weight:600}
+.tbl tr.hi td{color:var(--orange)}
+section.cream .tbl th{color:#6E7890} section.cream .tbl td{border-color:#E2DACD}
+section.cream .tbl tr.hi td{color:var(--orange-d)}
+
+.steps{display:flex;flex-direction:column;gap:22px}
+.steps .s{display:grid;grid-template-columns:84px 1fr;gap:26px;align-items:start}
+.steps .n{width:84px;height:84px;border-radius:50%;background:var(--orange);color:var(--ink);display:flex;
+  align-items:center;justify-content:center;font-family:'Black Han Sans',sans-serif;font-size:42px}
+.steps .t{font-weight:700;font-size:38px;line-height:1.3}
+.steps .d{font-size:29px;line-height:1.5;color:var(--muted);margin-top:6px}
+
+.big-no{font-family:'Black Han Sans',sans-serif;font-size:170px;line-height:.9;color:var(--orange);letter-spacing:-4px}
+.check{list-style:none;padding:0;margin:0}
+.check li{position:relative;padding-left:52px;font-size:34px;line-height:1.5;margin-top:18px;font-weight:500}
+.check li:before{content:'';position:absolute;left:0;top:13px;width:28px;height:28px;border:3px solid var(--orange);border-radius:8px}
+.why{border-left:6px solid var(--orange);padding:6px 0 6px 30px}
+
+/* 실사 표지 */
+section.photo{background:#05080F}
+section.photo .top{color:rgba(255,255,255,.85);text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.ph{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.9) contrast(1.05)}
+.ph-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,15,.62) 0%,rgba(5,8,15,.12) 30%,rgba(5,8,15,.30) 52%,rgba(5,8,15,.86) 76%,rgba(5,8,15,.96) 100%)}
+.corner{display:inline-flex;align-items:center;gap:14px;background:rgba(13,20,33,.72);border:2px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:10px 26px 12px;font-size:30px;font-weight:700;color:#fff}
+.corner:before{content:'';width:14px;height:14px;border-radius:50%;background:var(--orange)}
+.hook{font-family:'Black Han Sans',sans-serif;font-size:128px;line-height:1.1;letter-spacing:-2px;color:#fff;text-shadow:0 6px 34px rgba(0,0,0,.5)}
+.hook .hl{color:var(--orange)}
+.hook .box{background:var(--orange);color:var(--ink);padding:0 16px;-webkit-box-decoration-break:clone;box-decoration-break:clone;text-shadow:none}
+.sub{font-size:38px;font-weight:600;line-height:1.45;color:rgba(255,255,255,.92);text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.brand{font-family:'Black Han Sans',sans-serif;font-size:34px;color:#fff;letter-spacing:-.3px}
+.brand small{font-family:'IBM Plex Sans KR',sans-serif;font-size:24px;font-weight:500;color:rgba(255,255,255,.7);margin-left:12px}
+.credit{position:absolute;right:72px;bottom:30px;font-size:18px;color:rgba(255,255,255,.45)}
