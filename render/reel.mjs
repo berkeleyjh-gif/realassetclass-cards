@@ -1,8 +1,9 @@
 // realassetclass 릴스 빌더: 사진 + 텍스트 오버레이 → 1080×1920 MP4 (음악 없음)
 // 사용: node render/reel.mjs reel.json out.mp4
-// reel.json: {"shots":[{"photo":"/abs/path.jpg","dur":3.0,"html":"<div class=\"shade\"></div><div class=\"box\">...</div>"}]}
+// 첫 컷은 0프레임부터 훅 문구가 떠 있음(페이드 없음)·줌 강하게. dur 기본 2.0초, 첫 컷은 1.2~1.5초 권장
+// 사진 대신 "video":"/abs/clip.mp4"(+선택 "start":초)를 넣으면 그 영상 구간을 배경으로 씀(9:16로 잘라 씀, 소리 제거)
+// reel.json: {"shots":[{"photo":"/abs/path.jpg","dur":1.4,"html":"<div class=\"shade\"></div><div class=\"box\">...</div>"}]}
 // 오버레이 클래스: .shade .box .tag .h .m .s .n .two .src .handle .o .b
-// 선택: spec.maxrate(기본 1.5M) · spec.crf(기본 23) — 20초 4MB 안팎. 얼굴이 식별되는 사진은 쓰지 말 것
 import { chromium } from 'playwright-core';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -48,19 +49,24 @@ for (let i = 0; i < spec.shots.length; i++) {
 }
 await b.close();
 
-const X = 0.4, FPS = 30;
-const MAXRATE = spec.maxrate || '1.5M', BUF = spec.bufsize || '3M', CRF = String(spec.crf || 23); // 20초 기준 4MB 안팎
+const X = 0.25, FPS = 30;
 const clips = [];
 spec.shots.forEach((s, i) => {
-  const d = s.dur || 3.0, fr = Math.round(d * FPS);
+  const d = s.dur || 2.0, fr = Math.round(d * FPS);
   const z = i % 2 === 0
-    ? `zoompan=z='1+0.10*on/${fr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=${FPS}`
+    ? `zoompan=z='1+${i === 0 ? '0.18' : '0.10'}*on/${fr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=${FPS}`
     : `zoompan=z='1.10':x='(iw-iw/zoom)*(0.15+0.7*on/${fr})':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=${FPS}`;
   const out = path.join(work, `c${i + 1}.mp4`);
-  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-loop', '1', '-framerate', String(FPS), '-t', String(d), '-i', s.photo,
+  const bgIn = s.video
+    ? ['-ss', String(s.start || 0), '-t', String(d), '-i', s.video]
+    : ['-loop', '1', '-framerate', String(FPS), '-t', String(d), '-i', s.photo];
+  const bgF = s.video
+    ? `[0]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=${FPS},eq=saturation=0.92:contrast=1.04,tpad=stop_mode=clone:stop_duration=${d},trim=duration=${d},setpts=PTS-STARTPTS[bg]`
+    : `[0]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,eq=saturation=0.92:contrast=1.04,${z},trim=duration=${d},setpts=PTS-STARTPTS[bg]`;
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...bgIn,
     '-loop', '1', '-framerate', String(FPS), '-t', String(d), '-i', path.join(work, `s${i + 1}.png`),
-    '-filter_complex', `[0]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,eq=saturation=0.92:contrast=1.04,${z},trim=duration=${d},setpts=PTS-STARTPTS[bg];[1]format=rgba,fade=in:st=0.2:d=0.4:alpha=1[ov];[bg][ov]overlay=0:0:shortest=1,format=yuv420p[v]`,
-    '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-t', String(d), out]);
+    '-filter_complex', `${bgF};[1]format=rgba${i === 0 ? '' : ',fade=in:st=0.05:d=0.25:alpha=1'}[ov];[bg][ov]overlay=0:0:shortest=1,format=yuv420p[v]`,
+    '-map', '[v]', '-an', '-r', String(FPS), '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-t', String(d), out]);
   clips.push({ out, d });
 });
 const inputs = clips.flatMap(c => ['-i', c.out]);
@@ -71,9 +77,7 @@ for (let i = 1; i < clips.length; i++) {
   last = `a${i}`;
 }
 execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...inputs, '-filter_complex', f, '-map', `[${last}]`,
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', CRF, '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', String(FPS),
-  '-maxrate', MAXRATE, '-bufsize', BUF, '-movflags', '+faststart', outPath]);
-const mb = fs.statSync(outPath).size / 1048576;
-if (mb > 4) console.warn(`경고: ${mb.toFixed(1)}MB — 4MB 초과, spec.maxrate를 낮출 것`);
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', String(FPS),
+  '-maxrate', '4.5M', '-bufsize', '9M', '-movflags', '+faststart', outPath]);
 fs.rmSync(work, { recursive: true, force: true });
 console.log('reel:', outPath);
