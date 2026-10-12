@@ -1,0 +1,31 @@
+{
+ "renderedAt": "2026-10-12T12:15:06.849Z",
+ "bundles": [
+  "bundles/2026-10-12_week.json"
+ ],
+ "posts": [
+  {
+   "date": "2026-10-12",
+   "slug": "metro-starts-32pct",
+   "slides": 6,
+   "dir": "posts/2026-10-12_metro-starts-32pct",
+   "queued": true
+  },
+  {
+   "date": "2026-10-14",
+   "slug": "big-money-3q",
+   "slides": 6,
+   "dir": "posts/2026-10-14_big-money-3q",
+   "queued": true
+  },
+  {
+   "date": "2026-10-16",
+   "slug": "site-visit-checklist",
+   "slides": 6,
+   "dir": "posts/2026-10-16_site-visit-checklist",
+   "queued": true
+  }
+ ],
+ "warnings": [],
+ "errors": []
+}
