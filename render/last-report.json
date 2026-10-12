@@ -1,16 +1,9 @@
 {
- "renderedAt": "2026-10-12T12:15:06.849Z",
+ "renderedAt": "2026-10-12T13:12:04.106Z",
  "bundles": [
-  "bundles/2026-10-12_week.json"
+  "bundles/2026-10-12_week-cta.json"
  ],
  "posts": [
-  {
-   "date": "2026-10-12",
-   "slug": "metro-starts-32pct",
-   "slides": 6,
-   "dir": "posts/2026-10-12_metro-starts-32pct",
-   "queued": true
-  },
   {
    "date": "2026-10-14",
    "slug": "big-money-3q",
