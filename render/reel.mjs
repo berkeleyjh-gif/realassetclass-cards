@@ -3,7 +3,7 @@
 // 첫 컷은 0프레임부터 훅 문구가 떠 있음(페이드 없음)·줌 강하게. dur 기본 2.0초, 첫 컷은 1.2~1.5초 권장
 // 사진 대신 "video":"/abs/clip.mp4"(+선택 "start":초)를 넣으면 그 영상 구간을 배경으로 씀(9:16로 잘라 씀, 소리 제거)
 // reel.json: {"shots":[{"photo":"/abs/path.jpg","dur":1.4,"html":"<div class=\"shade\"></div><div class=\"box\">...</div>"}]}
-// 오버레이 클래스: .shade .box .tag .h .m .s .n .two .src .handle .o .b
+// 오버레이 클래스: .shade .box .tag .h .m .s .n .two .src .handle .o .b .loc(장소 라벨 — 실제 촬영 장소일 때만)
 // 선택: spec.maxrate(기본 1.5M) · spec.crf(기본 23) — 20초 4MB 안팎. 얼굴이 식별되는 사진은 쓰지 말 것
 import { chromium } from 'playwright-core';
 import fs from 'node:fs';
@@ -33,7 +33,8 @@ const css = `html,body{margin:0;width:1080px;height:1920px;background:transparen
 .o{color:#FF8A3D}.b{color:#5B9BFF}
 .two{display:flex;gap:40px;margin-top:30px}.two>div{flex:1;background:rgba(13,20,33,.72);border:2px solid #26344F;border-radius:30px;padding:34px 36px}
 .src{position:absolute;left:80px;right:80px;bottom:150px;font-size:28px;color:#AAB6CC;line-height:1.4}
-.handle{position:absolute;left:80px;bottom:90px;font-size:30px;font-weight:700;color:#F4F6FA;opacity:.85}`;
+.handle{position:absolute;left:80px;bottom:90px;font-size:30px;font-weight:700;color:#F4F6FA;opacity:.85}
+.loc{position:absolute;left:80px;top:170px;display:inline-flex;align-items:center;gap:12px;background:rgba(13,20,33,.62);border-radius:999px;padding:8px 24px 10px;font-size:30px;font-weight:700;color:#F4F6FA}.loc:before{content:'';width:12px;height:12px;border-radius:50%;background:#FF8A3D}`;
 
 const chrome = [process.env.CHROME_PATH, '/usr/bin/google-chrome', '/opt/pw-browsers/chromium-1194/chrome-linux/chrome']
   .find(p => p && fs.existsSync(p));
