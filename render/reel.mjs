@@ -4,6 +4,7 @@
 // 사진 대신 "video":"/abs/clip.mp4"(+선택 "start":초)를 넣으면 그 영상 구간을 배경으로 씀(9:16로 잘라 씀, 소리 제거)
 // reel.json: {"shots":[{"photo":"/abs/path.jpg","dur":1.4,"html":"<div class=\"shade\"></div><div class=\"box\">...</div>"}]}
 // 오버레이 클래스: .shade .box .tag .h .m .s .n .two .src .handle .o .b
+// 선택: spec.maxrate(기본 1.5M) · spec.crf(기본 23) — 20초 4MB 안팎. 얼굴이 식별되는 사진은 쓰지 말 것
 import { chromium } from 'playwright-core';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -50,6 +51,7 @@ for (let i = 0; i < spec.shots.length; i++) {
 await b.close();
 
 const X = 0.25, FPS = 30;
+const MAXRATE = spec.maxrate || '1.5M', BUF = spec.bufsize || '3M', CRF = String(spec.crf || 23); // 20초 기준 4MB 안팎
 const clips = [];
 spec.shots.forEach((s, i) => {
   const d = s.dur || 2.0, fr = Math.round(d * FPS);
@@ -77,7 +79,9 @@ for (let i = 1; i < clips.length; i++) {
   last = `a${i}`;
 }
 execFileSync('ffmpeg', ['-y', '-loglevel', 'error', ...inputs, '-filter_complex', f, '-map', `[${last}]`,
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', String(FPS),
-  '-maxrate', '4.5M', '-bufsize', '9M', '-movflags', '+faststart', outPath]);
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', CRF, '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', String(FPS),
+  '-maxrate', MAXRATE, '-bufsize', BUF, '-movflags', '+faststart', outPath]);
+const mb = fs.statSync(outPath).size / 1048576;
+if (mb > 4) console.warn(`경고: ${mb.toFixed(1)}MB — 4MB 초과, spec.maxrate를 낮출 것`);
 fs.rmSync(work, { recursive: true, force: true });
 console.log('reel:', outPath);
