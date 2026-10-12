@@ -1,6 +1,7 @@
 // realassetclass 릴스 빌더: 사진 + 텍스트 오버레이 → 1080×1920 MP4 (음악 없음)
 // 사용: node render/reel.mjs reel.json out.mp4
-// reel.json: {"shots":[{"photo":"/abs/path.jpg","dur":3.0,"html":"<div class=\"shade\"></div><div class=\"box\">...</div>"}]}
+// 첫 컷은 0프레임부터 훅 문구가 떠 있음(페이드 없음)·줌 강하게. dur 기본 2.0초, 첫 컷은 1.2~1.5초 권장
+// reel.json: {"shots":[{"photo":"/abs/path.jpg","dur":1.4,"html":"<div class=\"shade\"></div><div class=\"box\">...</div>"}]}
 // 오버레이 클래스: .shade .box .tag .h .m .s .n .two .src .handle .o .b
 import { chromium } from 'playwright-core';
 import fs from 'node:fs';
@@ -47,17 +48,17 @@ for (let i = 0; i < spec.shots.length; i++) {
 }
 await b.close();
 
-const X = 0.4, FPS = 30;
+const X = 0.25, FPS = 30;
 const clips = [];
 spec.shots.forEach((s, i) => {
-  const d = s.dur || 3.0, fr = Math.round(d * FPS);
+  const d = s.dur || 2.0, fr = Math.round(d * FPS);
   const z = i % 2 === 0
-    ? `zoompan=z='1+0.10*on/${fr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=${FPS}`
+    ? `zoompan=z='1+${i === 0 ? '0.18' : '0.10'}*on/${fr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=${FPS}`
     : `zoompan=z='1.10':x='(iw-iw/zoom)*(0.15+0.7*on/${fr})':y='ih/2-(ih/zoom/2)':d=1:s=1080x1920:fps=${FPS}`;
   const out = path.join(work, `c${i + 1}.mp4`);
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-loop', '1', '-framerate', String(FPS), '-t', String(d), '-i', s.photo,
     '-loop', '1', '-framerate', String(FPS), '-t', String(d), '-i', path.join(work, `s${i + 1}.png`),
-    '-filter_complex', `[0]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,eq=saturation=0.92:contrast=1.04,${z},trim=duration=${d},setpts=PTS-STARTPTS[bg];[1]format=rgba,fade=in:st=0.2:d=0.4:alpha=1[ov];[bg][ov]overlay=0:0:shortest=1,format=yuv420p[v]`,
+    '-filter_complex', `[0]scale=2160:3840:force_original_aspect_ratio=increase,crop=2160:3840,eq=saturation=0.92:contrast=1.04,${z},trim=duration=${d},setpts=PTS-STARTPTS[bg];[1]format=rgba${i === 0 ? '' : ',fade=in:st=0.05:d=0.25:alpha=1'}[ov];[bg][ov]overlay=0:0:shortest=1,format=yuv420p[v]`,
     '-map', '[v]', '-r', String(FPS), '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-t', String(d), out]);
   clips.push({ out, d });
 });
