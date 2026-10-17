@@ -1,21 +1,28 @@
 {
- "renderedAt": "2026-10-12T13:12:04.106Z",
+ "renderedAt": "2026-10-17T01:07:13.567Z",
  "bundles": [
-  "bundles/2026-10-12_week-cta.json"
+  "bundles/2026-10-19_week.json"
  ],
  "posts": [
   {
-   "date": "2026-10-14",
-   "slug": "big-money-3q",
+   "date": "2026-10-19",
+   "slug": "1015-one-year-split",
    "slides": 6,
-   "dir": "posts/2026-10-14_big-money-3q",
+   "dir": "posts/2026-10-19_1015-one-year-split",
    "queued": true
   },
   {
-   "date": "2026-10-16",
-   "slug": "site-visit-checklist",
+   "date": "2026-10-21",
+   "slug": "nps-alt-infra",
    "slides": 6,
-   "dir": "posts/2026-10-16_site-visit-checklist",
+   "dir": "posts/2026-10-21_nps-alt-infra",
+   "queued": true
+  },
+  {
+   "date": "2026-10-23",
+   "slug": "jeonse-contract-check",
+   "slides": 6,
+   "dir": "posts/2026-10-23_jeonse-contract-check",
    "queued": true
   }
  ],
