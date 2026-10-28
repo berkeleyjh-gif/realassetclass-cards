@@ -61,6 +61,8 @@
   - `seoul_gwanghwamun-street_pexels31801544.mp4` Pexels 제목은 '광화문'이지만 프레임 확인 결과 흥인지문(동대문)+뒤쪽 DDP와 앞 도로 — 동대문으로 라벨. 가로 23초(2026-10-24 추가)
   - `seoul_myeongdong-shinsegae-vert_pexels31727226.mp4` 신세계 본점(옛 본관) 맞은편 인도, 세로 9.7초 — 'SHINSEGAE' 간판이 크게 보여 가급적 쓰지 않음. 3초 이후 행인이 가까워짐(2026-10-24 추가)
   - `seoul_myeongdong-spring_pexels31737273.mp4` 6초 이후 구간은 간판 없이 인도·지하철 출입구만 보여 '명동' 컷으로 쓰기 좋음
+  - `logistics_truck-yard-aerial_pexels5171156.mp4` 트럭·트레일러 주차장 수직 공중 촬영(미국), 가로 16.4초 — 물류·리츠 분위기 컷 전용. 특정 물류센터처럼 라벨 붙이지 말 것, 캡션에 '분위기 컷' 표기(2026-10-28 추가)
+  - `logistics_warehouse-trucks-aerial-vert_pexels20654630.mp4` 물류창고 도크·지게차·빨간 트럭 공중 촬영(미국), 세로 8.3초 — 물류 분위기 컷 전용, 얼굴 없음(2026-10-28 추가)
   - 6580708로 받을 때 30초 넘는 1080p 이상 영상(롯데타워 항공 38259257, 청계천 31758112)은 Unprocessable Entity로 실패함
 - 새 클립 추가: Pexels 영상 페이지를 WebFetch로 읽어 `videos.pexels.com/video-files/...mp4` 주소를 찾고 6580708(source_url)로 `assets/videos/`에 저장(이 환경에선 직접 다운로드가 막힘). 20MB 넘는 파일은 실패하니 작은 해상도로. 간판·표지판으로 한국 촬영인지 확인, 얼굴이 크게 잡히는 클립 제외
 - 무료 영상은 분위기 컷으로만. 특정 동네를 다루면서 다른 곳 영상을 그 동네처럼 쓰지 않음. 지도 로드뷰·스트리트뷰 캡처, AI 생성 영상은 쓰지 않음
