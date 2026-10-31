@@ -1,28 +1,28 @@
 {
- "renderedAt": "2026-10-24T01:13:03.298Z",
+ "renderedAt": "2026-10-31T01:05:51.878Z",
  "bundles": [
-  "bundles/2026-10-26_week.json"
+  "bundles/2026-11-02_week.json"
  ],
  "posts": [
   {
-   "date": "2026-10-26",
-   "slug": "seoul-monthly-rent-51pct",
+   "date": "2026-11-02",
+   "slug": "new-towns-76700",
    "slides": 6,
-   "dir": "posts/2026-10-26_seoul-monthly-rent-51pct",
+   "dir": "posts/2026-11-02_new-towns-76700",
    "queued": true
   },
   {
-   "date": "2026-10-28",
-   "slug": "k-twin-tower-1trn",
+   "date": "2026-11-04",
+   "slug": "jamsil-yejeon-1680",
    "slides": 6,
-   "dir": "posts/2026-10-28_k-twin-tower-1trn",
+   "dir": "posts/2026-11-04_jamsil-yejeon-1680",
    "queued": true
   },
   {
-   "date": "2026-10-30",
-   "slug": "winter-maintenance-fee",
+   "date": "2026-11-06",
+   "slug": "retail-vacancy-check",
    "slides": 6,
-   "dir": "posts/2026-10-30_winter-maintenance-fee",
+   "dir": "posts/2026-11-06_retail-vacancy-check",
    "queued": true
   }
  ],
