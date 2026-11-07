@@ -1,28 +1,28 @@
 {
- "renderedAt": "2026-10-31T01:05:51.878Z",
+ "renderedAt": "2026-11-07T01:08:28.921Z",
  "bundles": [
-  "bundles/2026-11-02_week.json"
+  "bundles/2026-11-09_week.json"
  ],
  "posts": [
   {
-   "date": "2026-11-02",
-   "slug": "new-towns-76700",
+   "date": "2026-11-09",
+   "slug": "auction-12yr-high",
    "slides": 6,
-   "dir": "posts/2026-11-02_new-towns-76700",
+   "dir": "posts/2026-11-09_auction-12yr-high",
    "queued": true
   },
   {
-   "date": "2026-11-04",
-   "slug": "jamsil-yejeon-1680",
+   "date": "2026-11-11",
+   "slug": "building-deals-3q",
    "slides": 6,
-   "dir": "posts/2026-11-04_jamsil-yejeon-1680",
+   "dir": "posts/2026-11-11_building-deals-3q",
    "queued": true
   },
   {
-   "date": "2026-11-06",
-   "slug": "retail-vacancy-check",
+   "date": "2026-11-13",
+   "slug": "land-permit-check",
    "slides": 6,
-   "dir": "posts/2026-11-06_retail-vacancy-check",
+   "dir": "posts/2026-11-13_land-permit-check",
    "queued": true
   }
  ],
