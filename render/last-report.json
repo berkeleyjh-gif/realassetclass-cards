@@ -1,28 +1,28 @@
 {
- "renderedAt": "2026-11-07T01:08:28.921Z",
+ "renderedAt": "2026-11-14T01:09:09.227Z",
  "bundles": [
-  "bundles/2026-11-09_week.json"
+  "bundles/2026-11-16_week.json"
  ],
  "posts": [
   {
-   "date": "2026-11-09",
-   "slug": "auction-12yr-high",
+   "date": "2026-11-16",
+   "slug": "seoul-listings-80k",
    "slides": 6,
-   "dir": "posts/2026-11-09_auction-12yr-high",
+   "dir": "posts/2026-11-16_seoul-listings-80k",
    "queued": true
   },
   {
-   "date": "2026-11-11",
-   "slug": "building-deals-3q",
+   "date": "2026-11-18",
+   "slug": "seoul-hotel-room-price",
    "slides": 6,
-   "dir": "posts/2026-11-11_building-deals-3q",
+   "dir": "posts/2026-11-18_seoul-hotel-room-price",
    "queued": true
   },
   {
-   "date": "2026-11-13",
-   "slug": "land-permit-check",
+   "date": "2026-11-20",
+   "slug": "subscription-notice-check",
    "slides": 6,
-   "dir": "posts/2026-11-13_land-permit-check",
+   "dir": "posts/2026-11-20_subscription-notice-check",
    "queued": true
   }
  ],
