@@ -1,28 +1,28 @@
 {
- "renderedAt": "2026-11-14T01:09:09.227Z",
+ "renderedAt": "2026-11-21T01:05:51.296Z",
  "bundles": [
-  "bundles/2026-11-16_week.json"
+  "bundles/2026-11-23_week.json"
  ],
  "posts": [
   {
-   "date": "2026-11-16",
-   "slug": "seoul-listings-80k",
+   "date": "2026-11-23",
+   "slug": "assessed-value-ratio-69",
    "slides": 6,
-   "dir": "posts/2026-11-16_seoul-listings-80k",
+   "dir": "posts/2026-11-23_assessed-value-ratio-69",
    "queued": true
   },
   {
-   "date": "2026-11-18",
-   "slug": "seoul-hotel-room-price",
+   "date": "2026-11-25",
+   "slug": "jongno-place-sale",
    "slides": 6,
-   "dir": "posts/2026-11-18_seoul-hotel-room-price",
+   "dir": "posts/2026-11-25_jongno-place-sale",
    "queued": true
   },
   {
-   "date": "2026-11-20",
-   "slug": "subscription-notice-check",
+   "date": "2026-11-27",
+   "slug": "winter-house-check",
    "slides": 6,
-   "dir": "posts/2026-11-20_subscription-notice-check",
+   "dir": "posts/2026-11-27_winter-house-check",
    "queued": true
   }
  ],
